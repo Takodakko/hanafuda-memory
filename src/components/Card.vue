@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, defineEmits, PropType } from 'vue';
+import { computed, defineEmits, PropType } from 'vue';
 
   const props = defineProps({
     imageUrl: {type: String, required: true},
