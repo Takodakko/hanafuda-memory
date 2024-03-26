@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import Card from './Card.vue';
 import Instructions from './Instructions.vue';
+import cardUrlList from '../cardList';
 
 const showInstructions = ref(false);
 function toggleInstructions() {
@@ -47,12 +48,13 @@ function changeDifficultyLevel() {
     if (isGameInProgress.value === true) return;
   if (difficultyLevel.value < 2) difficultyLevel.value += 1;
   else difficultyLevel.value = 0;
+  triesLeft.value = listOfNumberOfTries[difficultyLevel.value];
 }
 const listOfNumberOfTries = [72, 60, 48];
-const currentNumberOfTries = computed(() => listOfNumberOfTries[difficultyLevel.value]);
+const currentNumberOfTries = computed(() => triesLeft.value);
 const listOfDifficultyLevels = ['easy', 'normal', 'hard'];
 const currentDifficultyLevel = computed(() => listOfDifficultyLevels[difficultyLevel.value]);
-const initialNumberOfTriesLeft = listOfNumberOfTries[0];
+const initialNumberOfTriesLeft = listOfNumberOfTries[difficultyLevel.value];
 const triesLeft = ref(initialNumberOfTriesLeft);
 
 function initializeCards() {
@@ -66,8 +68,9 @@ function initializeCards() {
         const currentCardName = currentCard.replace('_', ' ');
         const monthName = currentCardName.slice(0, currentCardName.indexOf(' '));
         const cardId = currentId.toString();
+        const currentCardUrl: string = cardUrlList[currentCard];
         const newCard: aCard = {
-            url: `/src/assets/cards/${currentCard}.jpg`,
+            url: `${currentCardUrl}`,
             altText: currentCardName,
             faceUp: true,
             month: monthName,
@@ -83,16 +86,6 @@ function initializeCards() {
 const newDeck = initializeCards();
 
 const currentDeck = ref(newDeck);
-
-// const faceDownCards = computed(() => {
-//     let number = 0;
-//     currentDeck.value.forEach((card) => {
-//         if (card.faceUp === false) {
-//             number += 1;
-//         }
-//     });
-//     return number;
-// });
 
 const faceUpCards = computed(() => {
     let number = 0;
@@ -197,3 +190,4 @@ function resetOrStartGame() {
     color: black;
   }
 </style>
+../cardList

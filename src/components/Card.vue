@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, defineEmits, PropType } from 'vue';
+import { computed, PropType } from 'vue';
+import backOfCardImage from '../assets/cards/card_back.jpg';
 
   const props = defineProps({
     imageUrl: {type: String, required: true},
@@ -26,7 +27,7 @@ import { computed, defineEmits, PropType } from 'vue';
   }
 
   const imageSrc = computed(() => {
-    return props.faceUp === true || props.faceUp === null ? props.imageUrl : '../src/assets/cards/card_back.jpg';
+    return props.faceUp === true || props.faceUp === null ? props.imageUrl : backOfCardImage;
   });
 
 const imageAlt = computed(() => {
