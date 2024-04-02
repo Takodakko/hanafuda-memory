@@ -153,41 +153,36 @@ function resetOrStartGame() {
         })
     }
 }
+const buttonCss = 'border rounded-md border-black border-2 bg-red-400 hover:bg-red-300 p-1';
+const disabledButtonCss = 'border rounded-md border-black border-2 bg-gray-500';
+const cardContainerCss = 'grid grid-cols-12 p-1 space-x-0 place-items-center gap-1';
+const infoCss = 'flex flex-col place-items-center';
 
 </script>
 
 <template>
+  <div :class=infoCss>
     <Instructions v-if="showInstructions" @close-instructions="toggleInstructions"/>
-    <button v-else @click="toggleInstructions">
+    <button v-else @click="toggleInstructions" :class=buttonCss>
         Instructions
     </button><br>
-    <button @click="changeDifficultyLevel" :class="isGameInProgress ? 'disabled-button' : 'button'">
+    <button @click="changeDifficultyLevel" :class="isGameInProgress ? disabledButtonCss : buttonCss">
         {{ currentDifficultyLevel }}
     </button><br>
     Points: {{ points }}<br>
     Tries left: {{ currentNumberOfTries }}<br>
-    <button @click="resetOrStartGame">
+    <button @click="resetOrStartGame" :class=buttonCss>
       {{ isGameInProgress ? "Reset" : "Start" }}
     </button><br>
-    <div class="card-container">
-      <div v-for="[id, card] in currentDeck">
-        <Card :month="card.month" :current-cards-up="faceUpCards" :image-url="card.url" :alt-text="card.altText" :key="id" :face-up="card.faceUp" :id="id" @flipped="listenForFlip"/>
-      </div><br>
+  </div>
+    <div :class=cardContainerCss>
+      <!-- <div v-for="[id, card] in currentDeck"> -->
+        <Card v-for="[id, card] in currentDeck" :month="card.month" :current-cards-up="faceUpCards" :image-url="card.url" :alt-text="card.altText" :key="id" :face-up="card.faceUp" :id="id" @flipped="listenForFlip"/>
+      <!-- </div> -->
+      <br>
     </div>
 </template>
 
 <style scoped>
-  .card-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 1px;
-    margin: 5px;
-    max-width: 1100px;
-  }
-  .disabled-button {
-    background-color: gray;
-    color: black;
-  }
+  
 </style>
-../cardList
