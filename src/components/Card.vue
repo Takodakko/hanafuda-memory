@@ -35,11 +35,17 @@ const imageAlt = computed(() => {
 });
 
 const cardBoxClass = computed(() => {
-    return props.faceUp === null ? scoredCardBoxCss : cardBoxCss;
+    if (props.faceUp === null) {
+      return scoredCardBoxCss;
+    } else if (props.faceUp === true) {
+      return cardBoxCss;
+    } else {
+      return cardBoxBackCss;
+    }
 });
-// const cardCss = 'max-w-65px max-h-100px px-10px py-5px';
-const cardCss = 'max-w-3/4 max-h-3/4';
-const cardBoxCss = 'max-w-65px max-h-100px mx-10px my-5px overflow-hidden';
+const cardCss = 'max-w-65px max-h-100px px-10px py-5px';
+const cardBoxCss = 'max-w-3/4 max-h-3/4 mx-10px my-5px';
+const cardBoxBackCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px';
 const scoredCardBoxCss = 'w-85px h-110px px-5px py-2.5px opacity-50';
   
 </script>

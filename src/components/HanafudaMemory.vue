@@ -154,8 +154,8 @@ function resetOrStartGame() {
     }
 }
 const buttonCss = 'border rounded-md border-black border-2 bg-red-400 hover:bg-red-300 p-1';
-const disabledButtonCss = 'border rounded-md border-black border-2 bg-gray-500';
-const cardContainerCss = 'grid grid-cols-12 p-1 space-x-0 place-items-center gap-1';
+const disabledButtonCss = 'border rounded-md border-black border-2 bg-gray-500 p-1';
+const cardContainerCss = 'grid grid-cols-12 p-1 space-x-0 place-items-center gap-1 overflow-hidden';
 const infoCss = 'flex flex-col place-items-center';
 
 </script>
@@ -176,9 +176,7 @@ const infoCss = 'flex flex-col place-items-center';
     </button><br>
   </div>
     <div :class=cardContainerCss>
-      <!-- <div v-for="[id, card] in currentDeck"> -->
-        <Card v-for="[id, card] in currentDeck" :month="card.month" :current-cards-up="faceUpCards" :image-url="card.url" :alt-text="card.altText" :key="id" :face-up="card.faceUp" :id="id" @flipped="listenForFlip"/>
-      <!-- </div> -->
+      <Card v-for="[id, card] in currentDeck" :month="card.month" :current-cards-up="faceUpCards" :image-url="card.url" :alt-text="card.altText" :key="id" :face-up="card.faceUp" :id="id" @flipped="listenForFlip"/>
       <br>
     </div>
 </template>
