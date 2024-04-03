@@ -44,9 +44,9 @@ const cardBoxClass = computed(() => {
     }
 });
 const cardCss = 'max-w-65px max-h-100px px-10px py-5px';
-const cardBoxCss = 'max-w-3/4 max-h-3/4 mx-10px my-5px';
+const cardBoxCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px';
 const cardBoxBackCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px';
-const scoredCardBoxCss = 'w-85px h-110px px-5px py-2.5px opacity-50';
+const scoredCardBoxCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px opacity-50';
   
 </script>
 <template>

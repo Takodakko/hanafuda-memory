@@ -38,7 +38,7 @@ const monthList: MonthList = {
     'december': false,
 };
 
-const matchingMonths = ref(monthList);
+const matchingMonths = ref({...monthList});
 
 const points = computed(() => Math.floor(matchedCards.value / 2));
 const cardList = ['january_crane', 'january_scroll', 'january_plain1', 'january_plain2', 'february_bird', 'february_scroll', 'february_plain1', 'february_plain2', 'march_curtain', 'march_scroll', 'march_plain1', 'march_plain2', 'april_bird', 'april_scroll', 'april_plain1', 'april_plain2', 'may_dock', 'may_scroll', 'may_plain1', 'may_plain2', 'june_butterfly', 'june_scroll', 'june_plain1', 'june_plain2', 'july_boar', 'july_scroll', 'july_plain1', 'july_plain2', 'august_moon', 'august_geese', 'august_plain1', 'august_plain2', 'september_sake', 'september_scroll', 'september_plain1', 'september_plain2', 'october_deer', 'october_scroll', 'october_plain1', 'october_plain2', 'november_man', 'november_bird', 'november_scroll', 'november_thunder', 'december_phoenix', 'december_plain1', 'december_plain2', 'december_plain3'];
@@ -145,7 +145,7 @@ function resetOrStartGame() {
       triesLeft.value = initialNumberOfTriesLeft;
       difficultyLevel.value = 0;
       currentDeck.value = initializeCards();
-      matchingMonths.value = monthList;
+      matchingMonths.value = {...monthList};
     } else {
         isGameInProgress.value = true;
         currentDeck.value.forEach((card) => {
