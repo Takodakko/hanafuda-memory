@@ -4,17 +4,18 @@ const emit = defineEmits(['close-instructions']);
 function closeInstructions() {
   emit('close-instructions');
 }
-
+const instructionModalCss = 'border border-solid border-black rounded-md border-8 bg-yellow-400 p-8 z-50 absolute flex flex-col content-center justify-center';
+const smallButtonCss = 'border border-solid rounded-md border-transparent p-4 bg-yellow-200 absolute top-5 right-5';
 </script>
 <template>
-  <div class="instruction-modal">
-    <button @click="closeInstructions" class="small-button">
+  <div :class=instructionModalCss>
+    <button @click="closeInstructions" :class=smallButtonCss>
         X
     </button><br>
-      <header class="instruction-title">
+      <header class="text-5xl">
         <b>Hanafuda Memory Game</b>
       </header><br>
-      <main class="instruction-main">
+      <main class="text-lg">
         This is a memory game using Hanafuda cards.<br>
         Play it to familiarize yourself with the cards!<br>
         There are 12 sets of cards, for each of the months of the year, and each set has 4 cards.<br>
@@ -24,32 +25,5 @@ function closeInstructions() {
   </div>
 </template>
 <style scoped>
-  .instruction-modal {
-    border-style: solid;
-    border-radius: 8px;
-    border-color: black;
-    border-width: 10px;
-    z-index: 1000;
-    position: absolute;
-    background-color: olive;
-    padding: 2em;
-  }
-  .small-button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: .5em;
-    font-weight: 300;
-    font-family: inherit;
-    background-color: #1b1b1b;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-  }
-  .instruction-title {
-    font-size: 30px;
-  }
-  .instruction-main {
-    font-size: 20px;
-  }
+  
 </style>
