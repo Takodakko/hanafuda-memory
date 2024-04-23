@@ -154,9 +154,12 @@ function resetOrStartGame() {
     }
 }
 const buttonCss = 'border rounded-md border-black border-2 bg-red-400 hover:bg-red-300 p-1';
+const buttonCssPulse = 'border rounded-md border-black border-2 bg-red-400 hover:bg-red-300 p-1 animate-pulse';
 const disabledButtonCss = 'border rounded-md border-black border-2 bg-gray-500 p-1';
 const cardContainerCss = 'grid grid-cols-12 p-1 space-x-0 place-items-center gap-1 overflow-hidden';
 const infoCss = 'flex flex-col place-items-center';
+const pointsCssGameNotDone = 'text-xl text-black-500';
+const pointsCssGameDone = 'text-xl font-bold text-amber-500';
 
 </script>
 
@@ -169,14 +172,14 @@ const infoCss = 'flex flex-col place-items-center';
     <button @click="changeDifficultyLevel" :class="isGameInProgress ? disabledButtonCss : buttonCss">
         {{ currentDifficultyLevel }}
     </button><br>
-    Points: {{ points }}<br>
+    <div :class="currentNumberOfTries <= 0 ? pointsCssGameDone : pointsCssGameNotDone">Points: {{ points }}</div><br>
     Tries left: {{ currentNumberOfTries }}<br>
-    <button @click="resetOrStartGame" :class=buttonCss>
+    <button @click="resetOrStartGame" :class="currentNumberOfTries === 0 ? buttonCssPulse : buttonCss">
       {{ isGameInProgress ? "Reset" : "Start" }}
     </button><br>
   </div>
     <div :class=cardContainerCss>
-      <Card v-for="[id, card] in currentDeck" :month="card.month" :current-cards-up="faceUpCards" :image-url="card.url" :alt-text="card.altText" :key="id" :face-up="card.faceUp" :id="id" @flipped="listenForFlip"/>
+      <Card v-for="[id, card] in currentDeck" :month="card.month" :current-cards-up="faceUpCards" :image-url="card.url" :alt-text="card.altText" :key="id" :face-up="card.faceUp" :id="id" @flipped="listenForFlip" :tries-left="currentNumberOfTries"/>
       <br>
     </div>
 </template>
