@@ -9,6 +9,7 @@ import backOfCardImage from '../assets/cards/card_back.jpg';
     id: {type: String, required: true},
     currentCardsUp: {type: Number, required: true},
     month: {type: String, required: true},
+    triesLeft: {type: Number, required: true},
   });
 
   const emit = defineEmits(['flipped']);
@@ -35,17 +36,21 @@ const imageAlt = computed(() => {
 });
 
 const cardBoxClass = computed(() => {
+    if (props.triesLeft === 0) {
+      return scoredCardBoxCss;
+    }
     if (props.faceUp === null) {
       return scoredCardBoxCss;
     } else if (props.faceUp === true) {
       return cardBoxCss;
     } else {
-      return cardBoxBackCss;
+      return props.currentCardsUp < 2 ? cardBoxBackCss : cardBoxBackCssNoPulse;
     }
 });
 const cardCss = 'max-w-65px max-h-100px px-10px py-5px';
 const cardBoxCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px';
-const cardBoxBackCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px';
+const cardBoxBackCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300';
+const cardBoxBackCssNoPulse = 'max-w-3/5 max-h-3/5 mx-10px my-5px';
 const scoredCardBoxCss = 'max-w-3/5 max-h-3/5 mx-10px my-5px opacity-50';
   
 </script>

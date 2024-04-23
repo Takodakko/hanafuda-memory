@@ -20,7 +20,7 @@ const smallButtonCss = 'border border-solid rounded-md border-transparent p-4 bg
         Play it to familiarize yourself with the cards!<br>
         There are 12 sets of cards, for each of the months of the year, and each set has 4 cards.<br>
         Matching any 2 cards from a set will give you one point. Try to get the maximum (24) number of points before you run out of tries!<br>
-        You can change the number of tries by switching between modes.
+        You can change the number of tries by switching between levels of difficulty.
       </main><br>
   </div>
 </template>
